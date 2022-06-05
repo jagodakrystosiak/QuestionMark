@@ -1,0 +1,12 @@
+.modal {
+    display: none;
+}
+
+.modal--active {
+    display: block;
+}
+
+.modal__content {
+    position: relative;
+    cursor: pointer;
+}
