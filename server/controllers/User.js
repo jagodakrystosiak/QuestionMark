@@ -6,22 +6,9 @@ const bcrypt = require('bcryptjs');
 const User = require("../models/User");
 
 router.get('/init', async (req,res) => {
-    const token = req.query.token;
-    let user = null;
-    let response;
+    const user = await User.findById(req.userId);
 
-    try {
-        const userData = jwt.verify(token, 'app');
-        user = await User.findById(userData.userId);
-    } catch(error) {
-        response = null;
-    }
-
-    if(user) {
-        response = user;
-    }
-
-    res.send({user: response});
+    res.send({user});
 });
 
 router.post('/register', async (req,res) => {

@@ -10,6 +10,10 @@ import Navbar from './Components/Navbar/Navbar';
 import Register from './Pages/Register/Register';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
+import CreateCategory from './Pages/Category/Create/CreateCategory';
+import HttpClient from './Services/HttpClient';
+import ShowCategory from './Pages/Category/Show/ShowCategory';
+import CreateForum from './Pages/Forum/Create/CreateForum';
 
 function App() {
   useEffect(() => {
@@ -25,8 +29,7 @@ function App() {
   }
 
   const init = async () => {
-    const token = localStorage.getItem("token");
-    const { data } = await axios.get('/api/user/init?token=' + token);
+    const { data } = await HttpClient().get('/api/user/init');
     setUser(data.user);
     setIsInitiated(true);
   };
@@ -39,7 +42,10 @@ function App() {
             <Navbar/>
             <Routes>
               <Route path="/" element={<Home />} exact/>
+              <Route path="/category/:id" element={<ShowCategory/>}></Route>
+              <Route path="/forum/create/:categoryId" element={user ? <CreateForum/> : { component: () => <Navigate to="/auth/login" /> }}></Route>
               <Route path="/profile" element={user ? <Profile/> : { component: () => <Navigate to="/auth/login" /> }}/>
+              <Route path="/category/create" element={user ? <CreateCategory/> : { component: () => <Navigate to="/auth/login" /> }}/>
               <Route path="/auth/register" element={!user ? <Register/> : { component: () => <Navigate to="/" /> }}/>
               <Route path="/auth/login" element={!user ? <Login/> : { component: () => <Navigate to="/" /> }}/>
             </Routes>

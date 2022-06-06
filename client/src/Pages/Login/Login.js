@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import HttpClient from "../../Services/HttpClient";
 import FormErrors from "../../Components/FormErrors/FormErrors";
 import Button from "../../Components/Button/Button";
 import axios from "axios";
@@ -28,10 +29,11 @@ export default function () {
                 password
             };
 
-            const response = await axios.post('/api/user/login', data);
+            const response = await HttpClient().post('/api/user/login', data);
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token);
-            navigate('/');
+            window.location('/');
+            //navigate('/');
         } catch (error) {
             setErrors([error.response.data.message]);
         }

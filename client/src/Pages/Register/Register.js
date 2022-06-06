@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import HttpClient from "../../Services/HttpClient";
 import FormErrors from "../../Components/FormErrors/FormErrors";
 import Button from "../../Components/Button/Button";
 import validator from "validator";
@@ -33,7 +34,7 @@ export default function () {
         };
 
         try{
-            await axios.post('/api/user/register', data);
+            await HttpClient().post('/api/user/register', data);
         navigate('/auth/login');
         } catch(error){
             setErrors([error.response.data.message]);
