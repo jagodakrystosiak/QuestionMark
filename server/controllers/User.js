@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { mongoose } = require("mongoose");
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcryptjs');
@@ -90,7 +91,20 @@ router.post("/change-password", async (req, res) => {
     user.password = req.body.password;
     await user.save();
     res.sendStatus(200);
-})
+});
 
+router.get('/:id', async (req,res) => {
+    if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        return res.sendStatus(404);
+    }
+
+    const user = await User.findById(req.params.id);
+    res.send(user);
+});
+
+router.get('/', async (req,res) => {
+    const users = await User.find();
+    res.send(users);
+});
 
 module.exports = router;

@@ -6,26 +6,25 @@ import { Link } from "react-router-dom";
 
 export default function () {
     const navigate = useNavigate();
-    const [categories, setCategories] = useState([]);
+    const [questions, setQuestions] = useState([]);
 
     useEffect(() => {
-        getCategories();
+        getQuestions();
     }, []);
 
-    const getCategories = async () => {
-        const {data} = await HttpClient().get('/api/category');
-        setCategories(data);
+    const getQuestions = async () => {
+        const {data} = await HttpClient().get('/api/question');
+        setQuestions(data);
     };
 
     return (
         <div>
-            <h1>Home</h1>
-            <Button onClick={() => navigate('/category/create')}>Create Category</Button>
+            <Button onClick={() => navigate('/question/create')}>Zadaj pytanie</Button>
 
             <div>
-                {categories.map((category, index) =>
+                {questions.map((question, index) =>
                 <div key={index}>
-                    <Link to={`/category/${category._id}`}>{category.name}</Link>
+                    <Link to={`/question/${question._id}`}>{question.userName} {question.content} {question.createdAt}</Link>
                 </div>
                     )}
             </div>

@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import FormErrors from "../../../Components/FormErrors/FormErrors";
 import Button from "../../../Components/Button/Button";
 import HttpClient from "../../../Services/HttpClient";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../../../Contexts/AppContext";
 
 export default function () {
     const navigate = useNavigate();
     const [errors, setErrors] = useState([]);
-    const [name, setName] = useState('');
+    const [content, setContent] = useState('');
+    const { user } = useContext(AppContext);
 
     const onSubmit = async event => {
         event.preventDefault();
         setErrors([]);
 
-        if(!name) return setErrors(['Name is required']);
+        if(!content) return setErrors(['Treść jest wymagana']);
 
         const data = {
-            name
+            content,
+            userId: user._id,
+            userName: user.name
         };
 
-        const response = await HttpClient().post('/api/category/create', data);
-        navigate(`/category/${response.data._id}`)
+        const response = await HttpClient().post('/api/question/create', data);
+        navigate(`/question/${response.data._id}`)
     }
 
     return (
@@ -29,8 +33,8 @@ export default function () {
             <form onSubmit={onSubmit}>
                 <FormErrors errors={errors}/>
                 <div>
-                    <labe>Name</labe>
-                    <input value={name} onChange={e => setName(e.target.value)}></input>
+                    <labe>Treść: </labe>
+                    <input value={content} onChange={e => setContent(e.target.value)}></input>
                 </div>
 
                 <Button type="submit">Create Category</Button>

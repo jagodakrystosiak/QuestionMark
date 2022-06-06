@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import Logo from "./../../Images/Logo.svg";
+import Logo from "./../../Images/Logo.png";
 import AppContext from "../../Contexts/AppContext";
 
 export default function () {
     const {logout, user} = useContext(AppContext);
     return (
         <div>
-            <img src={Logo} alt="Logo"></img>
+            <img src={Logo} alt="Logo" className="logo"></img>
+            <h1>QuestionMark</h1>
 
             <ul>
                 <li>

@@ -1,21 +1,24 @@
 const express = require("express");
 const { mongoose } = require("mongoose");
 const router = express.Router();
-const Category = require("../models/Category");
+const Answer = require('../models/Answer')
 const protected = require('../middleware/Protected');
 
 router.post('/create', protected, async (req,res) => {
-    const category = Category({
-        name: req.body.name
+    const answer = Answer({
+        content: req.body.content,
+        questionId: req.body.questionId,
+        userId: req.body.userId,
+        userName: req.body.userName,
     });
 
-    await category.save();
-    res.send(category);
+    await answer.save();
+    res.send(answer);
 });
 
 router.get('/', async (req,res) => {
-    const categories = await Category.find();
-    res.send(categories);
+    const answer = await Answer.find();
+    res.send(answer);
 });
 
 router.get('/:id', async (req,res) => {
@@ -23,8 +26,8 @@ router.get('/:id', async (req,res) => {
         return res.sendStatus(404);
     }
 
-    const category = await Category.findById(req.params.id);
-    res.send(category);
+    const answer = await Answer.findById(req.params.id);
+    res.send(answer);
 });
 
 module.exports = router;

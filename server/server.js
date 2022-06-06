@@ -14,8 +14,8 @@ app.use(auth);
 app.use(express.static(path.join(__dirname, "..", "client/build")));
 
 app.use('/api/user', require('./controllers/User'));
-app.use('/api/category', require('./controllers/Category'));
-app.use('/api/forum', require('./controllers/Forum'));
+app.use('/api/question', require('./controllers/Question'));
+app.use('/api/answer', require('./controllers/Answer'));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(_dirname, "..", "client/build/index.html"))

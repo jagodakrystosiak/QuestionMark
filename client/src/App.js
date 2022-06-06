@@ -10,10 +10,11 @@ import Navbar from './Components/Navbar/Navbar';
 import Register from './Pages/Register/Register';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
-import CreateCategory from './Pages/Category/Create/CreateCategory';
+
 import HttpClient from './Services/HttpClient';
-import ShowCategory from './Pages/Category/Show/ShowCategory';
-import CreateForum from './Pages/Forum/Create/CreateForum';
+import CreateQuestion from './Pages/Question/Create/CreateQuestion';
+import ShowQuestion from './Pages/Question/Show/ShowQuestion';
+import CreateAnswer from './Pages/Answer/Create/CreateAnswer';
 
 function App() {
   useEffect(() => {
@@ -42,10 +43,10 @@ function App() {
             <Navbar/>
             <Routes>
               <Route path="/" element={<Home />} exact/>
-              <Route path="/category/:id" element={<ShowCategory/>}></Route>
-              <Route path="/forum/create/:categoryId" element={user ? <CreateForum/> : { component: () => <Navigate to="/auth/login" /> }}></Route>
+              <Route path="/question/:id" element={<ShowQuestion/>}></Route>
+              <Route path="/answer/create/:questionId" element={user ? <CreateAnswer/> : { component: () => <Navigate to="/auth/login" /> }}></Route>
               <Route path="/profile" element={user ? <Profile/> : { component: () => <Navigate to="/auth/login" /> }}/>
-              <Route path="/category/create" element={user ? <CreateCategory/> : { component: () => <Navigate to="/auth/login" /> }}/>
+              <Route path="/question/create" element={user ? <CreateQuestion/> : { component: () => <Navigate to="/auth/login" /> }}/>
               <Route path="/auth/register" element={!user ? <Register/> : { component: () => <Navigate to="/" /> }}/>
               <Route path="/auth/login" element={!user ? <Login/> : { component: () => <Navigate to="/" /> }}/>
             </Routes>

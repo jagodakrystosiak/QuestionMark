@@ -32,8 +32,7 @@ export default function () {
             const response = await HttpClient().post('/api/user/login', data);
             setUser(response.data.user);
             localStorage.setItem("token", response.data.token);
-            window.location('/');
-            //navigate('/');
+            navigate('/');
         } catch (error) {
             setErrors([error.response.data.message]);
         }
