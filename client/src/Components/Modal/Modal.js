@@ -10,7 +10,7 @@ export default function({children, isOpen, onClose, title}) {
         <div className={`modal ${isOpen ? ' modal--active' : ''}`}>
             <div>
                 <span className="modal__content" onClick={close}>&times;</span>
-                <h3>{title}</h3>
+                <h3 className="title">{title}</h3>
                 {children}
             </div>
         </div>

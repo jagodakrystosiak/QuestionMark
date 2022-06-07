@@ -53,8 +53,8 @@ export default function ({ isOpen, onClose }) {
             <form onSubmit={onSubmit}>
                 <FormErrors errors={errors} />
                 <div>
-                    <label>Email</label>
-                    <input value={email} onChange={e => setEmail(e.target.value)}></input>
+                    <label>Email: </label>
+                    <input value={email} onChange={e => setEmail(e.target.value)} className='sm-input'></input>
                 </div>
                 <Button type="submit">Change</Button>
             </form>

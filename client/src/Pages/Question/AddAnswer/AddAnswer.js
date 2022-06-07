@@ -4,30 +4,20 @@ import Button from "../../../Components/Button/Button";
 import HttpClient from "../../../Services/HttpClient";
 import { useNavigate, useParams } from "react-router-dom";
 import AppContext from "../../../Contexts/AppContext";
-import { Link } from "react-router-dom";
+import Modal from "../../../Components/Modal/Modal";
 
-export default function () {
-    const { questionId } = useParams();
+export default function ({ isOpen, onClose, questionId }) {
     const navigate = useNavigate();
     const [errors, setErrors] = useState([]);
     const [content, setContent] = useState('');
     const { user } = useContext(AppContext);
-    const [question, setQuestion] = useState([]);
-
-    useEffect(() => {
-        getQuestion();
-    }, []);
-
-    const getQuestion = async () => {
-        const { data } = await HttpClient().get('/api/question/'+questionId);
-        setQuestion(data);
-    };
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const onSubmit = async event => {
         event.preventDefault();
         setErrors([]);
 
-        if(!content) return setErrors(['Treść jest wymagana do kontynuacji']);
+        if (!content) return setErrors(['Treść jest wymagana do kontynuacji']);
 
         const data = {
             content,
@@ -37,20 +27,27 @@ export default function () {
         };
 
         const response = await HttpClient().post('/api/answer/create', data);
-        navigate(`/question/${questionId}`)
+        onClose();
     }
 
+    const closeModal = () => {
+        onClose();
+    };
+
+    useEffect(() => {
+        setModalOpen(isOpen);
+    }, [isOpen]);
+
     return (
-        <div className="container">
-            <h1 className="title">Answering for <Link to={`/question/${questionId}`}>{question.content}</Link></h1>
+        <Modal isOpen={isModalOpen} onClose={closeModal} title="Create answer">
             <form onSubmit={onSubmit}>
-                <FormErrors errors={errors}/>
+                <FormErrors errors={errors} />
                 <div>
                     <input value={content} onChange={e => setContent(e.target.value)}></input>
                 </div>
 
-                <Button type="submit">Answer</Button>
+                <Button type="submit" onClick={() => window.location.reload()}>Answer</Button>
             </form>
-        </div>
+        </Modal>
     )
 }

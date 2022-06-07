@@ -57,24 +57,26 @@ export default function ({ isOpen, onClose }) {
         <Modal isOpen={isModalOpen} onClose={closeModal} title="Change Password">
             <form onSubmit={onSubmit}>
                 <FormErrors errors={errors} />
-                <div>
-                    <label>Current Password</label>
-                    <input type="password"
+                <table>
+                    <tr>
+                        <td><label>Current Password: </label></td>
+                        <td><input type="password"
                         value={currentPassword}
-                        onChange={e => setCurrentPassword(e.target.value)}></input>
-                </div>
-                <div>
-                    <label>New Password</label>
-                    <input type="password"
+                        onChange={e => setCurrentPassword(e.target.value)} className='sm-input'></input></td>
+                    </tr>
+                    <tr>
+                        <td><label>New Password: </label></td>
+                        <td><input type="password"
                         value={password}
-                        onChange={e => setPassword(e.target.value)}></input>
-                </div>
-                <div>
-                    <label>New Password Again</label>
-                    <input type="password"
+                        onChange={e => setPassword(e.target.value)} className='sm-input'></input></td>
+                    </tr>
+                    <tr>
+                        <td><label>New Password Again: </label></td>
+                        <td><input type="password"
                         value={passwordAgain}
-                        onChange={e => setPasswordAgain(e.target.value)}></input>
-                </div>
+                        onChange={e => setPasswordAgain(e.target.value)} className='sm-input'></input></td>
+                    </tr>
+                </table>
                 <Button type="submit">Change</Button>
             </form>
         </Modal>

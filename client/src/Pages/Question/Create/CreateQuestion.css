@@ -1,0 +1,19 @@
+.title {
+    font-size: 30px;
+}
+
+.container .title {
+    padding-bottom: 20px;
+}
+
+.container .title a {
+    text-decoration: none;
+    color: #7C4DFF;
+}
+
+form input {
+    width: 90%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 20px;
+}

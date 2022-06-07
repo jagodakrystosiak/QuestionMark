@@ -4,6 +4,7 @@ import Button from "../../../Components/Button/Button";
 import HttpClient from "../../../Services/HttpClient";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../../Contexts/AppContext";
+import './CreateQuestion.css';
 
 export default function () {
     const navigate = useNavigate();
@@ -28,16 +29,15 @@ export default function () {
     }
 
     return (
-        <div>
-            <h1>Create category</h1>
+        <div className="container">
+            <h1 className="title">Create question</h1>
             <form onSubmit={onSubmit}>
                 <FormErrors errors={errors}/>
                 <div>
-                    <labe>Treść: </labe>
                     <input value={content} onChange={e => setContent(e.target.value)}></input>
                 </div>
 
-                <Button type="submit">Create Category</Button>
+                <Button type="submit">Ask</Button>
             </form>
         </div>
     )

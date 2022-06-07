@@ -1,0 +1,112 @@
+.container {
+    padding: 20px;
+}
+.home-title {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.home-title h1 {
+    font-size: 30px;
+}
+
+.home-title button {
+    grid-column-start: 4;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 3px solid #7C4DFF;
+    background-color: #7C4DFF;
+    color: #FFF;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.18);
+}
+
+.home-title button:hover {
+    transform: scale(1.1);
+    background-color: #D1C4E9;
+    border: 3px solid #D1C4E9;
+}
+
+.question_list {
+    margin-top: 20px;
+    border-bottom: 3px solid #757575;
+}
+
+.question_list button {
+    background-color: #FFF;
+    border: 0;
+    width: 100%;
+    cursor: pointer;
+}
+
+.question_list ul {
+    text-align: left;
+    padding: 10px;
+    width: 98%;
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #757575;
+}
+
+.question_list h2 {
+    color: #212121;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+.question_list a {
+    color:#7C4DFF;
+    text-decoration: none;
+}
+
+.question_list .btn-edit {
+    border-top: 3px solid #BDBDBD;
+    margin-top: 20px;
+    background-color: #673AB7;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 0;
+    padding: 8px;
+    font-size: 16px;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.question_list .btn-delete {
+    border-top: 3px solid #BDBDBD;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #512DA8;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 0;
+    padding: 7px;
+    font-size: 16px;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.question-content {
+    display: flex;
+    border-top: 3px solid #BDBDBD;
+}
+
+.question_list .btn-violet {
+    border: 0;
+    border-radius: 15px;
+    color: #FFF;
+    width: 200px;
+    padding: 10px;
+    background-color: #7C4DFF;
+    font-size: 16px;
+}
+
+.question_list .btn-violet:hover {
+    background-color: #D1C4E9;
+}

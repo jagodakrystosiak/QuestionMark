@@ -1,4 +1,76 @@
-.logo {
-    width: 5%;
-    height: 10%;
+
+/* Pasek navigacji */
+.navbar {
+    background-color: #673AB7;
+    border-top: 10px solid #512DA8;
+    height: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
+nav ul{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+nav li {
+    height: 70px;
+    width: 150px;
+}
+
+/* Nazwa strony */
+.nav-name {
+    font-size: 30px;
+    padding: 20px;
+}
+
+.nav-name a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+/* Przycisk profilu  */
+nav button {
+    width: 150px;
+    border: 0;
+    padding: 22.5px;
+    margin-right: 20px;
+    background-color: #673AB7;
+    border-bottom: 2px solid transparent;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+nav button:hover{
+    border-bottom: 2px solid #FFF;
+}
+
+/* Nawigacja rozwijana */
+nav ul ul {
+    display: none;
+    background-color: #673AB7;
+    position: fixed;
+}
+
+nav ul ul li {
+    height: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+nav ul ul li:hover {
+    background-color: #D1C4E9;
+}
+
+nav ul ul li a {
+    color: #FFF;
+    text-decoration: none;
+    padding-left: 30px;
+}
+
+nav ul:hover ul {
+    display: block;
+}
+
+
+
+

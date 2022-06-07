@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import axios from "axios";
 import AppContext from './Contexts/AppContext';
 import Home from './Pages/Home/Home';
+import './App.css';
 
-import "./Components/Page/page.css";
-import "./Components/Form/Form.css";
 import Navbar from './Components/Navbar/Navbar';
 import Register from './Pages/Register/Register';
 import Login from './Pages/Login/Login';

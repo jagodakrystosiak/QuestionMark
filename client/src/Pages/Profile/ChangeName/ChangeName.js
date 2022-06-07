@@ -46,8 +46,8 @@ export default function({isOpen, onClose}) {
             <form onSubmit={onSubmit}>
                 <FormErrors errors={errors}/>
                 <div>
-                    <label>Name</label>
-                    <input value={name} onChange={e => setName(e.target.value)}></input>
+                    <label>Name: </label>
+                    <input value={name} onChange={e => setName(e.target.value)} className='sm-input'></input>
                 </div>
                 <Button type="submit">Change</Button>
             </form>

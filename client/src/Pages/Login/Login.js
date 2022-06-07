@@ -39,23 +39,25 @@ export default function () {
     };
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className="container">
+            <h1 className="title">Login</h1>
 
             <form onSubmit={onSubmit}>
                 <FormErrors errors={errors} />
-                <div>
-                    <label>Email</label>
-                    <input type="text"
+                <table>
+                    <tr>
+                        <td><label>Email: </label></td>
+                        <td><input type="text"
                         value={email}
-                        onChange={e => setEmail(e.target.value)}></input>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password"
+                        onChange={e => setEmail(e.target.value)} className='sm-input'></input></td>
+                    </tr>
+                    <tr>
+                        <td><label>Password: </label></td>
+                        <td><input type="password"
                         value={password}
-                        onChange={e => setPassword(e.target.value)}></input>
-                </div>
+                        onChange={e => setPassword(e.target.value)} className='sm-input'></input></td>
+                    </tr>
+                </table>
 
                 <Button type="submit">Login</Button>
             </form>

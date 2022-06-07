@@ -1,0 +1,19 @@
+.profile-data {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-data p {
+    padding: 10px;
+}
+
+.change-options Button {
+    margin-left: 20px;
+}
+
+.sm-input {
+    width: 150px;
+    height: 20px;
+    padding: 2px;
+    margin-left:10px;
+}
