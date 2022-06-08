@@ -42,21 +42,22 @@ export default function () {
                 <Button type="button" onClick={() => setPasswordOpen(true)}>Change Password</Button>
             </div>
 
-
-            <ChangeName isOpen={isNameOpen} onClose={() => setNameOpen(false)} />
-            <ChangeEmail isOpen={isEmailOpen} onClose={() => setEmailOpen(false)} />
-            <ChangePassword isOpen={isPasswordOpen} onClose={() => setPasswordOpen(false)} />
+                <ChangeName isOpen={isNameOpen} onClose={() => setNameOpen(false)} />
+                <ChangeEmail isOpen={isEmailOpen} onClose={() => setEmailOpen(false)} />
+                <ChangePassword isOpen={isPasswordOpen} onClose={() => setPasswordOpen(false)} />
 
             <div className="question_list">
                 <h1 className="title">Your questions</h1>
                 {questions.map((question, index) =>
                     <div key={index}>
-                        <button onClick={() => navigate(`/question/${question._id}`)}>
-                            <ul>
-                                <li><Link to=''>{question.userName}</Link> asked on {question.createdAt.substring(0, 10)}</li>
-                                <li><h2>{question.content}</h2></li>
-                            </ul>
-                        </button>
+                        <div className="answer-content">
+                            <button onClick={() => navigate(`/question/${question._id}`)}>
+                                <ul>
+                                    <li><Link to=''>{question.userName}</Link> asked on {question.createdAt.substring(0, 10)}</li>
+                                    <li><h2>{question.content}</h2></li>
+                                </ul>
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>

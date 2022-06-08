@@ -17,3 +17,7 @@
     font-size: 30px;
     margin-right: 10px;
 }
+
+.modal__content:hover {
+    color: rgb(134, 134, 134);
+}

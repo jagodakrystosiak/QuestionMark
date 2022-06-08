@@ -64,8 +64,8 @@ export default function () {
                                 {user && user._id === answer.userId ? <button className="btn-edit" onClick={() => {
                                     setEditAnswerOpen(true);
                                     setEditAnswer(answer);
-                                }}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> : <div></div>}
-                                {user && answer && user._id === answer.userId ? <button className="btn-delete" onClick={() => HttpClient().get(`/api/answer/delete/${answer._id}`)}><i class="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
+                                }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button> : <div></div>}
+                                {user && answer && user._id === answer.userId ? <button className="btn-delete" onClick={() => HttpClient().get(`/api/answer/delete/${answer._id}`)}><i className="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
                             </div>
                             {user && answer === editAnswer && <EditAnswer isOpen={isEditAnswerOpen} onClose={() => setEditAnswerOpen(false)} answer={editAnswer}></EditAnswer>}
                         </div>
