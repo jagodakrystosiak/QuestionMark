@@ -13,7 +13,7 @@ export default function () {
     const { user } = useContext(AppContext);
     const [isEditQuestionOpen, setEditQuestionOpen] = useState(false);
     const [editQuestion, setEditQuestion] = useState(null);
-    const [sortType, setSortType] = useState('userName');
+    const [sortType, setSortType] = useState('createdAt');
 
     useEffect(() => {
         getQuestions();
@@ -24,14 +24,17 @@ export default function () {
         setQuestions(data);
     };
 
-    const sortQuestions = (a,b) => {
+    const sortQuestions = (a, b) => {
         switch (sortType) {
             case 'userName':
-                return a.userName > b.userName ? 1 : -1;
+                if (a.userName > b.userName) return 1;
+                else return -1;
             case 'content':
-                return a.content > b.content ? 1 : -1;
+                if (a.content > b.content) return 1;
+                else return -1;
             case 'createdAt':
-                return a.createdAt > b.createdAt ? 1 : -1;
+                if (a.createdAt > b.createdAt) return 1;
+                else return -1;
         }
     }
 
@@ -44,50 +47,14 @@ export default function () {
             <div className="sort">
                 <h3>Sort by:
                     <select onChange={(e) => setSortType(e.target.value)}>
-                        <option value="userName">user name</option>
-                        <option value="content">content</option>
                         <option value="createdAt">date</option>
+                        <option value="userName">author name</option>
+                        <option value="content">content</option>
                     </select>
                 </h3></div>
 
             <div className="question_list">
-                {sortType === 'userName' && questions.sort((a, b) => a.userName > b.userName ? 1 : -1).map((question, index) =>
-                    <div key={index}>
-                        <div className="question-content">
-                            <button onClick={() => navigate(`/question/${question._id}`)}>
-                                <ul>
-                                    <li><Link to=''>{question.userName}</Link> asked on {question.createdAt.substring(0, 10)}</li>
-                                    <li><h2>{question.content}</h2></li>
-                                </ul>
-                            </button>
-                            {user && user._id === question.userId ? <button id={index} className="btn-edit" onClick={() => {
-                                setEditQuestionOpen(true);
-                                setEditQuestion(question);
-                            }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button> : <div></div>}
-                            {user && user._id === question.userId ? <button className="btn-delete" onClick={() => HttpClient().get(`/api/answer/delete/${question._id}`)}><i className="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
-                        </div>
-                        {user && question === editQuestion && <EditQuestion isOpen={isEditQuestionOpen} onClose={() => setEditQuestionOpen(false)} question={question}></EditQuestion>}
-                    </div>
-                )}
-                {sortType === 'content' && questions.sort((a, b) => a.content > b.content ? 1 : -1).map((question, index) =>
-                    <div key={index}>
-                        <div className="question-content">
-                            <button onClick={() => navigate(`/question/${question._id}`)}>
-                                <ul>
-                                    <li><Link to=''>{question.userName}</Link> asked on {question.createdAt.substring(0, 10)}</li>
-                                    <li><h2>{question.content}</h2></li>
-                                </ul>
-                            </button>
-                            {user && user._id === question.userId ? <button id={index} className="btn-edit" onClick={() => {
-                                setEditQuestionOpen(true);
-                                setEditQuestion(question);
-                            }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button> : <div></div>}
-                            {user && user._id === question.userId ? <button className="btn-delete" onClick={() => HttpClient().get(`/api/answer/delete/${question._id}`)}><i className="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
-                        </div>
-                        {user && question === editQuestion && <EditQuestion isOpen={isEditQuestionOpen} onClose={() => setEditQuestionOpen(false)} question={question}></EditQuestion>}
-                    </div>
-                )}
-                {sortType === 'createdAt' && questions.sort((a, b) => a.createdAt > b.createdAt ? 1 : -1).map((question, index) =>
+                {questions.sort(sortQuestions).map((question, index) =>
                     <div key={index}>
                         <div className="question-content">
                             <button onClick={() => navigate(`/question/${question._id}`)}>
