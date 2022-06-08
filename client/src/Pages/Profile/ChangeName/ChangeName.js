@@ -18,7 +18,6 @@ export default function({isOpen, onClose}) {
         if(!name) return setErrors(['Name is required']);
         else if(name === user.name) return setErrors(['Name cannot be the same'])
 
-        const token = localStorage.getItem("token");
         const data = {
             name,
             userId: user._id

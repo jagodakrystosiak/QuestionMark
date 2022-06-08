@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import FormErrors from "../../../Components/FormErrors/FormErrors";
 import Button from "../../../Components/Button/Button";
-import HttpClient from "../../../Services/HttpClient";
-import { useNavigate, useParams } from "react-router-dom";
 import AppContext from "../../../Contexts/AppContext";
 import Modal from "../../../Components/Modal/Modal";
 import axios from "axios";
@@ -50,7 +48,7 @@ export default function ({ isOpen, onClose, answer }) {
                     <input onChange={e => setContent(e.target.value)} defaultValue={answer.content}></input>
                 </div>
 
-                <Button type="submit" onClick={() => window.location.reload()}>Answer</Button>
+                <Button type="submit" onClick={() => window.location.reload()}>Edit</Button>
             </form>
         </Modal> : <div></div>
     )

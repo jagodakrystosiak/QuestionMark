@@ -12,7 +12,6 @@ import Profile from './Pages/Profile/Profile';
 import HttpClient from './Services/HttpClient';
 import CreateQuestion from './Pages/Question/Create/CreateQuestion';
 import ShowQuestion from './Pages/Question/Show/ShowQuestion';
-import CreateAnswer from './Pages/Answer/Create/CreateAnswer';
 
 function App() {
   useEffect(() => {
@@ -42,7 +41,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} exact/>
               <Route path="/question/:id" element={<ShowQuestion/>}></Route>
-              <Route path="/answer/create/:questionId" element={user ? <CreateAnswer/> : { component: () => <Navigate to="/auth/login" /> }}></Route>
               <Route path="/profile" element={user ? <Profile/> : { component: () => <Navigate to="/auth/login" /> }}/>
               <Route path="/question/create" element={user ? <CreateQuestion/> : { component: () => <Navigate to="/auth/login" /> }}/>
               <Route path="/auth/register" element={!user ? <Register/> : { component: () => <Navigate to="/" /> }}/>

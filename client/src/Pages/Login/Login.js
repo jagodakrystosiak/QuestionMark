@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import HttpClient from "../../Services/HttpClient";
 import FormErrors from "../../Components/FormErrors/FormErrors";
 import Button from "../../Components/Button/Button";
-import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import AppContext from "../../Contexts/AppContext";
 

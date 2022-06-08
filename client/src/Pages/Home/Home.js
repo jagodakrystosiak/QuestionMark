@@ -39,10 +39,10 @@ export default function () {
                                     <li><h2>{question.content}</h2></li>
                                 </ul>
                             </button>
-                            {user._id === question.userId ? <button id={index} className="btn-edit" onClick={() => setEditQuestionOpen(true)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> : <div></div>}
-                            {user._id === question.userId ? <button className="btn-delete" onClick={() => HttpClient().get(`/api/answer/delete/${question._id}`)}><i class="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
+                            {user && user._id === question.userId ? <button id={index} className="btn-edit" onClick={() => setEditQuestionOpen(true)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> : <div></div>}
+                            {user && user._id === question.userId ? <button className="btn-delete" onClick={() => HttpClient().get(`/api/answer/delete/${question._id}`)}><i class="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
                         </div>
-                        <EditQuestion isOpen={isEditQuestionOpen} onClose={() => setEditQuestionOpen(false)} question={question}></EditQuestion>
+                        {user && <EditQuestion isOpen={isEditQuestionOpen} onClose={() => setEditQuestionOpen(false)} question={question}></EditQuestion>}
                     </div>
                 )}
             </div>

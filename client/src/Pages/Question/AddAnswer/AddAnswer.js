@@ -2,12 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import FormErrors from "../../../Components/FormErrors/FormErrors";
 import Button from "../../../Components/Button/Button";
 import HttpClient from "../../../Services/HttpClient";
-import { useNavigate, useParams } from "react-router-dom";
 import AppContext from "../../../Contexts/AppContext";
 import Modal from "../../../Components/Modal/Modal";
 
 export default function ({ isOpen, onClose, questionId }) {
-    const navigate = useNavigate();
     const [errors, setErrors] = useState([]);
     const [content, setContent] = useState('');
     const { user } = useContext(AppContext);

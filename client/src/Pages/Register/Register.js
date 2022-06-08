@@ -3,7 +3,6 @@ import HttpClient from "../../Services/HttpClient";
 import FormErrors from "../../Components/FormErrors/FormErrors";
 import Button from "../../Components/Button/Button";
 import validator from "validator";
-import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
 export default function () {

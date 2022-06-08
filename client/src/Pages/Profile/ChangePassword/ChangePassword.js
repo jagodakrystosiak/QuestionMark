@@ -6,7 +6,7 @@ import Modal from "../../../Components/Modal/Modal";
 import AppContext from "../../../Contexts/AppContext";
 
 export default function ({ isOpen, onClose }) {
-    const { user, setUser } = useContext(AppContext);
+    const { user } = useContext(AppContext);
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentPassword, setCurrentPassword] = useState("");
     const [password, setPassword] = useState("");
