@@ -21,8 +21,8 @@ to functionality, performance and security.
 - Postman
 
 ## Features
-- Quest can read questions and answers
-- Quest can register and become a user for more posibilities
+- Guest can read questions and answers
+- Guest can register and become a user for more posibilities
 - User can login by email and password
 - User can add questions and answers
 - User can edit or delete added questions and answers
@@ -36,8 +36,8 @@ to functionality, performance and security.
 2. Open project folder in another terminal and go to server folder
 3. Start server-side by command 'npm start'
 4. Open project folder in another terminal and go to client folder
-3. Client folder didn't have node_module folder so install it by command 'npm install'
-4. Then start by command 'npm start'
+5. Client folder didn't have node_module folder so install it by command 'npm install'
+6. Then start by command 'npm start'
 
 ## Acknowledgements
 - This project was inspired by [Zapytaj.onet.pl](https://zapytaj.onet.pl).
