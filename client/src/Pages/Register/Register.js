@@ -19,6 +19,7 @@ export default function () {
         let _errors = [];
 
         if (!name) _errors.push('Name is required');
+        if (name && name.length < 3) _errors.push('Name is too short');
         if (!validator.isEmail(email)) _errors.push('Email is required');
         if (!password) _errors.push('Password is required');
         if (!passwordAgain) _errors.push('Password confirmation is required');
@@ -28,14 +29,14 @@ export default function () {
 
         const data = {
             name,
-            email, 
+            email,
             password
         };
 
-        try{
+        try {
             await HttpClient().post('/api/user/register', data);
-        navigate('/auth/login');
-        } catch(error){
+            navigate('/auth/login');
+        } catch (error) {
             setErrors([error.response.data.message]);
         }
     };
@@ -50,26 +51,26 @@ export default function () {
                     <tr>
                         <td><label>Name: </label></td>
                         <td><input type="text"
-                        value={name}
-                        onChange={e => setName(e.target.value)} className='sm-input'></input></td>
+                            value={name}
+                            onChange={e => setName(e.target.value)} className='sm-input'></input></td>
                     </tr>
                     <tr>
                         <td><label>Email: </label></td>
                         <td><input type="text"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)} className='sm-input'></input></td>
+                            value={email}
+                            onChange={e => setEmail(e.target.value)} className='sm-input'></input></td>
                     </tr>
                     <tr>
                         <td><label>Password: </label></td>
                         <td><input type="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)} className='sm-input'></input></td>
+                            value={password}
+                            onChange={e => setPassword(e.target.value)} className='sm-input'></input></td>
                     </tr>
                     <tr>
                         <td><label>Password Again: </label></td>
                         <td><input type="password"
-                        value={passwordAgain}
-                        onChange={e => setPasswordAgain(e.target.value)} className='sm-input'></input></td>
+                            value={passwordAgain}
+                            onChange={e => setPasswordAgain(e.target.value)} className='sm-input'></input></td>
                     </tr>
                 </table>
 

@@ -7,6 +7,10 @@ const QuestionSchema = new Schema({
         default: Date.now(),
         type: Date
     },
+    editedAt: {
+        default: new Date(0),
+        type: Date
+    },
     userId: mongoose.ObjectId,
     userName: String
 }, {

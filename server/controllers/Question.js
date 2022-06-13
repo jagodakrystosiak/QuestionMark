@@ -46,8 +46,9 @@ router.post("/update/:id", async (req, res) => {
 
     const question = await Question.findById(req.params.id);
     question.content = req.body.content;
+    question.editedAt = Date.now();
 
-    try{
+    try {
         await question.save();
         res.sendStatus(200);
     } catch (e) {

@@ -63,7 +63,7 @@ router.post("/change-name", async (req, res) => {
     return res.sendStatus(200);
 });
 
-router.post("/change-email", async (rew, res) => {
+router.post("/change-email", async (req, res) => {
     const emailExists = await User.findOne({email: req.body.email});
     if(emailExists) {
         return res.status(401).send({

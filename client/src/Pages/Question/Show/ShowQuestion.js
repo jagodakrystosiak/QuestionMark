@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import AppContext from "../../../Contexts/AppContext";
 import HttpClient from "../../../Services/HttpClient";
 import Button from "../../../Components/Button/Button";
@@ -34,7 +33,7 @@ export default function () {
         setAnswers(data);
     };
 
-    const noAnswers = () => {
+    const answersExist = () => {
         if (answers.length === 0) {
             return false
         }
@@ -53,19 +52,19 @@ export default function () {
             <div className="answers">
                 {user && <AddAnswer isOpen={isAnsweringOpen} onClose={() => setAnsweringOpen(false)} questionId={question} />}
                 <h1>Answers</h1>
-                {noAnswers() ? <div className="answers-list">
+                {answersExist() ? <div className="answers-list">
                     {answers.map((answer, index) => (
                         <div key={index}>
                             <div className="answer-content">
                                 <ul>
-                                    <li><Link to=''>{answer.userName}</Link> answered on {answer.createdAt.substring(0, 10)}</li>
+                                    <li><Link to=''>{answer.userName}</Link> answered on {answer.createdAt.substring(0, 10)} {answer.editedAt && answer.editedAt.substring(0, 10) !== '1970-01-01' && <span className="edited">edited on {answer.editedAt.substring(0,10)}</span>}</li>
                                     <li><h2>{answer.content}</h2></li>
                                 </ul>
                                 {user && user._id === answer.userId ? <button className="btn-edit" onClick={() => {
                                     setEditAnswerOpen(true);
                                     setEditAnswer(answer);
                                 }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button> : <div></div>}
-                                {user && answer && user._id === answer.userId ? <button className="btn-delete" onClick={() => HttpClient().get(`/api/answer/delete/${answer._id}`)}><i className="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
+                                {user && answer && user._id === answer.userId ? <button className="btn-delete" onClick={() => {HttpClient().get(`/api/answer/delete/${answer._id}`); window.location.reload();}}><i className="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
                             </div>
                             {user && answer === editAnswer && <EditAnswer isOpen={isEditAnswerOpen} onClose={() => setEditAnswerOpen(false)} answer={editAnswer}></EditAnswer>}
                         </div>

@@ -116,3 +116,22 @@
     margin-left: 5px;
     font-size: 16px;
 }
+
+.edited {
+    color:#BDBDBD;
+}
+
+.question_answers {
+    margin-bottom: 10px;
+}
+
+.question_answers p {
+    border-bottom: 1px solid #BDBDBD;
+    margin-left: 40px;
+    padding: 5px;
+    background-color: #EEE;
+}
+
+.date {
+    color:#757575;
+}

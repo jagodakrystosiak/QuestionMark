@@ -8,6 +8,7 @@ import HttpClient from "../../Services/HttpClient";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import './Profile.css';
+import EditQuestion from "../Question/Edit/EditQuestion";
 
 export default function () {
     const navigate = useNavigate();
@@ -16,6 +17,9 @@ export default function () {
     const [isPasswordOpen, setPasswordOpen] = useState(false);
     const { user } = useContext(AppContext);
     const [questions, setQuestions] = useState([]);
+    const [isEditQuestionOpen, setEditQuestionOpen] = useState(false);
+    const [editQuestion, setEditQuestion] = useState(null);
+   
 
     useEffect(() => {
         getQuestions();
@@ -25,6 +29,13 @@ export default function () {
         const { data } = await HttpClient().get('/api/question?userId=' + user._id);
         setQuestions(data);
     };
+
+    const questionsExist = () => {
+        if (questions.length === 0) {
+            return false
+        }
+        return true
+    }
 
     return (
         <div className="container">
@@ -46,21 +57,28 @@ export default function () {
                 <ChangeEmail isOpen={isEmailOpen} onClose={() => setEmailOpen(false)} />
                 <ChangePassword isOpen={isPasswordOpen} onClose={() => setPasswordOpen(false)} />
 
-            <div className="question_list">
+            {questionsExist() ? <div className="question_list">
                 <h1 className="title">Your questions</h1>
                 {questions.map((question, index) =>
                     <div key={index}>
-                        <div className="answer-content">
+                        <div className="question-content">
                             <button onClick={() => navigate(`/question/${question._id}`)}>
                                 <ul>
-                                    <li><Link to=''>{question.userName}</Link> asked on {question.createdAt.substring(0, 10)}</li>
+                                    <li><Link to=''>{question.userName}</Link> asked on {question.createdAt.substring(0, 10)} {question.editedAt && question.editedAt.substring(0, 10) !== '1970-01-01' && <span className="edited">edited on {question.editedAt.substring(0,10)}</span>}</li>
                                     <li><h2>{question.content}</h2></li>
                                 </ul>
                             </button>
+                            {user && user._id === question.userId ? <button id={index} className="btn-edit" onClick={() => {
+                                setEditQuestionOpen(true);
+                                setEditQuestion(question);
+                            }}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button> : <div></div>}
+                            {user && user._id === question.userId ? <button className="btn-delete" onClick={() => HttpClient().get(`/api/answer/delete/${question._id}`)}><i className="fa fa-trash-o" aria-hidden="true"></i></button> : <div></div>}
                         </div>
+                        {user && question === editQuestion && <EditQuestion isOpen={isEditQuestionOpen} onClose={() => setEditQuestionOpen(false)} question={question}></EditQuestion>}
                     </div>
                 )}
-            </div>
+            </div> : <div className="question_list"><h1 className="title">Your questions</h1>
+            You didn't ask any questions, <p>but you can <Link to='/question/create'>ask here.</Link></p><br></br></div>}
         </div>
     )
 }

@@ -16,6 +16,7 @@ export default function({isOpen, onClose}) {
         setErrors([]);
         
         if(!name) return setErrors(['Name is required']);
+        if(name.length < 3) return setErrors(['Name is too short']);
         else if(name === user.name) return setErrors(['Name cannot be the same'])
 
         const data = {
